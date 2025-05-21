@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows Phone 7 Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tile {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      position: relative;
+      perspective: 1500px;
+    }
+
+    .tile-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.5s ease;
+      transform-style: preserve-3d;
+    }
+
+    .tile-front,
+    .tile-back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+    }
+
+    .tile-front {
+      background-color: #0078D7;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .tile-back {
+      background-color: #FFC40D;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      transform: rotateY(180deg);
+    }
+
+    .tile:hover.tile-inner {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tile" id="tile1">
+    <div class="tile-inner">
+      <div class="tile-front">App 1</div>
+      <div class="tile-back">This is App 1 content</div>
+    </div>
+  </div>
+  <div class="tile" id="tile2">
+    <div class="tile-inner">
+      <div class="tile-front">App 2</div>
+      <div class="tile-back">This is App 2 content</div>
+    </div>
+  </div>
+
+  <script>
+    // 模拟动态磁贴更新（这里简单设置文本变化）
+    setInterval(() => {
+      const tile1 = document.getElementById('tile1');
+      const front1 = tile1.querySelector('.tile-front');
+      front1.textContent = `App 1 - ${new Date().getSeconds()}`;
+    }, 1000);
+
+    setInterval(() => {
+      const tile2 = document.getElementById('tile2');
+      const front2 = tile2.querySelector('.tile-front');
+      front2.textContent = `App 2 - ${new Date().getSeconds()}`;
+    }, 1000);
+  </script>
+</body>
+
+</html>
